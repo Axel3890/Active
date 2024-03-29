@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 function Sidebar() {
@@ -41,7 +42,7 @@ function Sidebar() {
             D<span className="text-teal-600">.</span>
           </h1>
           <h1 className="hidden md:block font-bold text-sm md:text-xl text-center">
-            Sistema de Bienes<span className="text-teal-600">.</span>
+            Active Solutions<span className="text-teal-600">.</span>
           </h1>
           <div id="profile" className="space-y-3">
             <img
@@ -78,8 +79,8 @@ function Sidebar() {
             </button>
           </div>
           <div id="menu" className="flex flex-col space-y-2">
-            <a
-              href=""
+            <Link
+              href="/herramientas"
               className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -97,10 +98,9 @@ function Sidebar() {
                 />
               </svg>
               <span className="">Herramientas</span>
-            </a>
+            </Link>
             {/* Agrega más enlaces aquí */}
-            <a
-              href=""
+            <Link href="/garantias"
               className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -119,9 +119,9 @@ function Sidebar() {
                 />
               </svg>
               <span className="">Garantias</span>
-            </a>
-            <a
-              href=""
+            </Link>
+            <Link
+              href="/stock"
               className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -136,7 +136,7 @@ function Sidebar() {
                 />
               </svg>
               <span className="">Respuestos</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
