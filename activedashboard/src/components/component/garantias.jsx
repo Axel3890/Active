@@ -3,6 +3,7 @@ import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card }
 import { Button } from "@/components/ui/button"
 import Eliminar from "../botones/Eliminar";
 import Añadir from "../botones/Añadir";
+import Añadirgarantia from "../botones/AñadirGarantia";
 
 export function Garantias() {
   return (
@@ -71,7 +72,7 @@ export function Garantias() {
           <Button size="sm">View</Button>
         </CardFooter>
       </Card>
-      <Añadir></Añadir>
+      <Añadirgarantia></Añadirgarantia>
     </div>)
   );
 }

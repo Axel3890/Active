@@ -1,10 +1,50 @@
 "use client"
 import { postAutos } from '@/app/utils/funciones';
 import React, { useState } from 'react';
-import { ModalAuto } from '../modals/modalsauto';
+import ModalGarantias from '../modals/modalGarantia';
 
-const Añadir = () => {
+
+const Añadirgarantia = () => {
   const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    identificacion: '',
+    cliente: '',
+    garantia_desde: '',
+    garantia_hasta: '',
+    cubre: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await postAutos(formData);
+      alert('El auto se ha agregado correctamente.');
+    } catch (error) {
+      console.error('Error al agregar el auto:', error);
+      alert('Hubo un error al agregar el auto. Por favor, inténtalo de nuevo más tarde.');
+    }
+
+    setShowModal(false);
+
+    setFormData({
+      identificacion: '',
+      marca: '',
+      modelo: '',
+      modeloaño: '',
+      chasis: '',
+      problema: '',
+      cliente: ''
+    });
+  };
 
   return (
     <>
@@ -32,10 +72,10 @@ const Añadir = () => {
         </span>
       </button>
       {showModal && (
-      <ModalAuto setShowModal={setShowModal}></ModalAuto>
+      <ModalGarantias setShowModal={setShowModal}></ModalGarantias>
       )}
     </>
   );
 }
 
-export default Añadir;
+export default Añadirgarantia;
