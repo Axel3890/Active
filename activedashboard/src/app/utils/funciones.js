@@ -12,6 +12,20 @@ export async function getAutos() {
     }
 }
 
+export async function getGarantias() {
+    try {
+        const response = await fetch('http://localhost:3001/garantias');
+        if (!response.ok) {
+            throw new Error('Error al obtener las garantias');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Hubo un error al las garantias:', error);
+        throw error;
+    }
+}
+
 
 export async function postAutos(autoData) {
     try {

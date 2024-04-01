@@ -2,81 +2,57 @@
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Eliminar from "../botones/Eliminar";
-import Añadir from "../botones/Añadir";
 import Añadirgarantia from "../botones/AñadirGarantia";
 
-export function Garantias() {
+export function Garantias({ data }) {
   return (
-    (<div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-      <Card>
-        <CardHeader className="pb-0">
-          <CardTitle className="text-2xl">ABC123</CardTitle>
-          <CardDescription>Patente</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <div className="grid gap-1.5">
-            <div className="flex items-center gap-2 text-sm">
-              <div>Cliente:</div>
-              <div className="font-medium">John Doe</div>
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {data.map(garantia => (
+        <Card key={garantia.id}>
+          <CardHeader className="pb-0">
+            <CardTitle className="text-2xl">{garantia.identificacion}</CardTitle>
+            <CardDescription>Identificacion</CardDescription>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="grid gap-1.5">
+              <div className="flex items-center gap-2 text-sm">
+                <div>Cliente:</div>
+                <div className="font-medium">{garantia.cliente}</div>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <div>Garantia desde:</div>
+                <div className="font-medium">{new Date(garantia.inicio).toISOString().slice(0, 10)}</div>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <div>Hasta:</div>
+                <div className="font-medium">{new Date(garantia.inicio).toISOString().slice(0, 10)}</div>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <div>Cubre:</div>
+                <div className="font-medium">{garantia.cubre}</div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div>Garantia desde:</div>
-              <div className="font-medium">2023-08-12</div>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div>Hasta:</div>
-              <div className="font-medium">2028-08-12</div>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div>Cubre:</div>
-              <div className="font-medium">Cambio de aceite</div>
-            </div>
-          </div>
-        </CardContent>
-
-        <CardFooter className="flex justify-between">
-          <div className="flex items-center space-x-2">
-            <CheckCircleIcon className="w-4 h-4 fill-green-500" />
-            <CardDescription>Vigente</CardDescription>
-          </div>
-          <Eliminar></Eliminar>
-        </CardFooter>
-      </Card>
-     
-      <Card>
-        <CardHeader className="pb-0">
-          <CardTitle className="text-2xl">GHI789</CardTitle>
-          <CardDescription>License Plate</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <div className="grid gap-1.5">
-            <div className="flex items-center gap-2 text-sm">
-              <div>Customer:</div>
-              <div className="font-medium">Bob Smith</div>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div>Valid from:</div>
-              <div className="font-medium">2022-11-15</div>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div>Valid to:</div>
-              <div className="font-medium">2027-11-15</div>
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <div className="flex items-center space-x-2">
-            <XCircleIcon className="w-4 h-4 fill-red-500" />
-            <CardDescription>Expirada</CardDescription>
-          </div>
-          <Button size="sm">View</Button>
-        </CardFooter>
-      </Card>
-      <Añadirgarantia></Añadirgarantia>
-    </div>)
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            {new Date(garantia.fin) < Date.now() ? (
+              <div className="flex items-center space-x-2">
+                <XCircleIcon className="w-4 h-4 fill-red-500" />
+                <CardDescription>Expirada</CardDescription>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="w-4 h-4 fill-green-500" />
+                <CardDescription>Vigente</CardDescription>
+              </div>
+            )}
+            <Eliminar />
+          </CardFooter>
+        </Card>
+      ))}
+      <Añadirgarantia />
+    </div>
   );
 }
-
 
 function CheckCircleIcon(props) {
   return (
