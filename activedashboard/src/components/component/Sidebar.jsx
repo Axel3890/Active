@@ -54,7 +54,7 @@ function Sidebar() {
               <h2 className="font-medium text-xs md:text-sm text-center text-teal-500">
                 Nombre
               </h2>
-              <p className="text-xs text-gray-500 text-center">Administrator</p>
+              <p className="text-xs text-gray-500 text-center">Active Solutions</p>
             </div>
           </div>
           <div className="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500">
@@ -80,7 +80,7 @@ function Sidebar() {
           </div>
           <div id="menu" className="flex flex-col space-y-2">
             <Link
-              href="/herramientas"
+              href="/"
               className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
             >
               <svg

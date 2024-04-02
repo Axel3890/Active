@@ -1,10 +1,20 @@
 
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import Eliminar from "../botones/Eliminar";
 import Añadirgarantia from "../botones/AñadirGarantia";
+import { deleteElement } from "@/app/utils/funciones";
 
 export function Garantias({ data }) {
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteElement('garantias', id);
+      console.log('Elemento eliminado correctamente');
+    } catch (error) {
+      console.error('Error al eliminar el elemento:', error);
+    } 
+  };
+
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
       {data.map(garantia => (
@@ -45,7 +55,7 @@ export function Garantias({ data }) {
                 <CardDescription>Vigente</CardDescription>
               </div>
             )}
-            <Eliminar />
+            <Eliminar onClick={() =>  handleDelete(garantia.id)}/>
           </CardFooter>
         </Card>
       ))}

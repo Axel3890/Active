@@ -1,8 +1,19 @@
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card";
 import Eliminar from "../botones/Eliminar";
 import Añadir from "../botones/Añadir";
+import { deleteElement } from "@/app/utils/funciones";
 
 export function CardsAutos({ data }) {
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteElement('autos', id);
+      console.log('Elemento eliminado correctamente');
+    } catch (error) {
+      console.error('Error al eliminar el elemento:', error);
+    } 
+  };
+
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
       {data.map((auto) => (
@@ -18,7 +29,7 @@ export function CardsAutos({ data }) {
             <p className="text-sm font-semibold">Chasis: {auto.chasis}</p>
             <p className="text-sm font-semibold">Problema: {auto.problema}</p>
             <p className="text-sm font-semibold">Cliente: {auto.cliente}</p>
-            <Eliminar></Eliminar>
+            <Eliminar onClick={() =>  handleDelete(auto.id)}></Eliminar>
           </CardContent>
         </Card>
       ))}

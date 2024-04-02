@@ -46,3 +46,48 @@ export async function postAutos(autoData) {
         throw error;
     }
 }
+
+export async function postGarantia(garantiaData) {
+    try {
+        const response = await fetch('http://localhost:3001/garantias', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(garantiaData)
+        });
+        if (!response.ok) {
+            throw new Error('Error al agregar la garantia');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Hubo un error al agregar la garantia:', error);
+        throw error;
+    }
+}
+
+export async function deleteElement(tipo, id) {
+    try {
+      const response = await fetch(`http://localhost:3001/${tipo}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+
+        },
+      });
+  
+      if (!response.ok) {
+
+        throw new Error('Error al eliminar el elemento');
+      }
+  
+
+      return response;
+    } catch (error) {
+
+      console.error('Error al eliminar el elemento:', error);
+      throw error; 
+    }
+  }
+  

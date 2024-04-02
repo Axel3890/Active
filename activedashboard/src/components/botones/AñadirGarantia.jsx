@@ -1,55 +1,15 @@
 "use client"
-import { postAutos } from '@/app/utils/funciones';
 import React, { useState } from 'react';
 import ModalGarantias from '../modals/modalGarantia';
 
 
 const Añadirgarantia = () => {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    identificacion: '',
-    cliente: '',
-    garantia_desde: '',
-    garantia_hasta: '',
-    cubre: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await postAutos(formData);
-      alert('El auto se ha agregado correctamente.');
-    } catch (error) {
-      console.error('Error al agregar el auto:', error);
-      alert('Hubo un error al agregar el auto. Por favor, inténtalo de nuevo más tarde.');
-    }
-
-    setShowModal(false);
-
-    setFormData({
-      identificacion: '',
-      marca: '',
-      modelo: '',
-      modeloaño: '',
-      chasis: '',
-      problema: '',
-      cliente: ''
-    });
-  };
 
   return (
     <>
       <button
-        className="group flex h-10 w-10 select-none items-center justify-center rounded-lg border border-zinc-100 bg-white leading-8 text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"
+        className="group flex h-10 w-10 select-none items-center justify-center rounded-lg border border-zinc-100 bg-gray-400 leading-8 text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"
         aria-label="Abrir modal"
         onClick={() => setShowModal(true)}
       >

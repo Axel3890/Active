@@ -1,12 +1,12 @@
-// NuevoModal.js
+
 import React, { useState } from 'react';
+import { postGarantia } from '@/app/utils/funciones';
 
-
-const ModalGarantias = ({ setShowModal, onSubmitData }) => {
+const ModalGarantias = ({ setShowModal }) => {
   const [formData, setFormData] = useState({
     identificacion: '',
     cliente: '',
-    garantia_desde: '',
+    inicio: '',
     garantia_hasta: '',
     cubre: ''
   });
@@ -19,14 +19,12 @@ const ModalGarantias = ({ setShowModal, onSubmitData }) => {
     });
   };
 
-  console.log(formData.garantia_desde)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await postGarantia(formData);
       alert('La garantia se agregó correctamente');
-      onSubmitData(formData);
       setShowModal(false);
     } catch (error) {
       console.error('Error al agregar el auto:', error);
@@ -52,11 +50,11 @@ const ModalGarantias = ({ setShowModal, onSubmitData }) => {
               </div>
               <div>
                 <label htmlFor="garantia_desde" className="block text-sm font-medium text-gray-700">Garantía desde</label>
-                <input type="date" id="garantia_desde" name="garantia_desde" value={formData.garantia_desde} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
+                <input type="date" id="inicio" name="inicio" value={formData.inicio} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
               </div>
               <div>
                 <label htmlFor="garantia_hasta" className="block text-sm font-medium text-gray-700">Garantía hasta</label>
-                <input type="date" id="garantia_hasta" name="garantia_hasta" value={formData.garantia_hasta} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
+                <input type="date" id="fin" name="fin" value={formData.fin} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
               </div>
               <div>
                 <label htmlFor="cubre" className="block text-sm font-medium text-gray-700">Cubre</label>
