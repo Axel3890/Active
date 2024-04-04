@@ -1,15 +1,15 @@
 "use client"
-import { postAutos } from '@/app/utils/funciones';
 import React, { useState } from 'react';
-import { ModalAuto } from '../modals/modalsauto';
+import ModalStock from '../modals/modalStock';
 
-const Añadir = () => {
+
+const AñadirStock = ({onAddStock}) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button
-        className="group flex h-10 w-10 select-none items-center justify-center rounded-lg border border-zinc-100 bg-gray-200 leading-8 text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"
+        className="group flex h-10 w-10 select-none items-center justify-center rounded-lg border border-zinc-100 bg-gray-400 leading-8 text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"
         aria-label="Abrir modal"
         onClick={() => setShowModal(true)}
       >
@@ -32,10 +32,10 @@ const Añadir = () => {
         </span>
       </button>
       {showModal && (
-      <ModalAuto setShowModal={setShowModal}></ModalAuto>
+      <ModalStock setShowModal={setShowModal} onAddStock={onAddStock}></ModalStock>
       )}
     </>
   );
 }
 
-export default Añadir;
+export default AñadirStock;
