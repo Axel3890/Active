@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ModalGarantias from '../modals/modalGarantia';
 
 
-const Añadirgarantia = () => {
+const Añadirgarantia = ({onAddGarantia}) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -32,7 +32,7 @@ const Añadirgarantia = () => {
         </span>
       </button>
       {showModal && (
-      <ModalGarantias setShowModal={setShowModal}></ModalGarantias>
+      <ModalGarantias setShowModal={setShowModal} onAddGarantia={onAddGarantia}></ModalGarantias>
       )}
     </>
   );

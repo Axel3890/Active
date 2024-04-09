@@ -1,9 +1,8 @@
 "use client"
-import { postAutos } from '@/app/utils/funciones';
 import React, { useState } from 'react';
 import { ModalAuto } from '../modals/modalsauto';
 
-const Añadir = () => {
+const Añadir = ({onAddAuto}) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -32,7 +31,7 @@ const Añadir = () => {
         </span>
       </button>
       {showModal && (
-      <ModalAuto setShowModal={setShowModal}></ModalAuto>
+      <ModalAuto setShowModal={setShowModal} onAddAuto={onAddAuto}></ModalAuto>
       )}
     </>
   );

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 export function Stock({data}) {
-  console.log(data)
+
   const [stock, setStock] = useState({
     stock: ""
   })

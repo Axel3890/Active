@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { postAutos } from '@/app/utils/funciones';
-export function ModalAuto ({setShowModal}) {
+export function ModalAuto ({setShowModal, onAddAuto}) {
     const [formData, setFormData] = useState({
         identificacion: '',
         marca: '',
@@ -26,6 +26,7 @@ export function ModalAuto ({setShowModal}) {
           await postAutos(formData);
 
           alert('El auto se ha agregado correctamente.');
+          onAddAuto(formData)
         } catch (error) {
           console.error('Error al agregar el auto:', error);
 
@@ -54,19 +55,19 @@ return(
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="identificacion" className="block text-sm font-medium text-gray-700">Identificación</label>
-                    <input type="text" id="identificacion" name="identificacion" value={formData.identificacion} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="identificacion" name="identificacion" value={formData.identificacion} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                   <div>
                     <label htmlFor="marca" className="block text-sm font-medium text-gray-700">Marca</label>
-                    <input type="text" id="marca" name="marca" value={formData.marca} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="marca" name="marca" value={formData.marca} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                   <div>
                     <label htmlFor="modelo" className="block text-sm font-medium text-gray-700">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" value={formData.modelo} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="modelo" name="modelo" value={formData.modelo} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                   <div>
                     <label htmlFor="modeloaño" className="block text-sm font-medium text-gray-700">Modelo(Año)</label>
-                    <input type="text" id="modeloaño" name="modeloaño" value={formData.modeloaño} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="modeloaño" name="modeloaño" value={formData.modeloaño} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                   <div>
                     <label htmlFor="chasis" className="block text-sm font-medium text-gray-700">Chasis</label>
@@ -74,11 +75,11 @@ return(
                   </div>
                   <div>
                     <label htmlFor="problema" className="block text-sm font-medium text-gray-700">Problema</label>
-                    <input type="text" id="problema" name="problema" value={formData.problema} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="problema" name="problema" value={formData.problema} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                   <div>
                     <label htmlFor="cliente" className="block text-sm font-medium text-gray-700">Cliente</label>
-                    <input type="text" id="cliente" name="cliente" value={formData.cliente} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <input type="text" id="cliente" name="cliente" value={formData.cliente} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required/>
                   </div>
                 </div>
                 <div className="mt-6">

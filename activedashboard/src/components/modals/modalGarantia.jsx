@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { postGarantia } from '@/app/utils/funciones';
 
-const ModalGarantias = ({ setShowModal }) => {
+const ModalGarantias = ({ setShowModal, onAddGarantia }) => {
   const [formData, setFormData] = useState({
     identificacion: '',
     cliente: '',
@@ -25,6 +25,7 @@ const ModalGarantias = ({ setShowModal }) => {
     try {
       await postGarantia(formData);
       alert('La garantia se agregó correctamente');
+      onAddGarantia(formData)
       setShowModal(false);
     } catch (error) {
       console.error('Error al agregar el auto:', error);

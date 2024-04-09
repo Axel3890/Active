@@ -1,7 +1,7 @@
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card";
 import Eliminar from "../botones/Eliminar";
-import Añadir from "../botones/Añadir";
 import { deleteElement } from "@/app/utils/funciones";
+import Finalizado from "../botones/Finalizado";
 
 export function CardsAutos({ data }) {
 
@@ -30,10 +30,11 @@ export function CardsAutos({ data }) {
             <p className="text-sm font-semibold">Problema: {auto.problema}</p>
             <p className="text-sm font-semibold">Cliente: {auto.cliente}</p>
             <Eliminar onClick={() =>  handleDelete(auto.id)}></Eliminar>
+            <Finalizado></Finalizado>
           </CardContent>
         </Card>
       ))}
-      <Añadir></Añadir>
+
     </div>
   );
 }

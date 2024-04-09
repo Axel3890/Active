@@ -35,7 +35,7 @@ export function Garantias({ data }) {
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <div>Hasta:</div>
-                <div className="font-medium">{new Date(garantia.inicio).toISOString().slice(0, 10)}</div>
+                <div className="font-medium">{new Date(garantia.fin).toISOString().slice(0, 10)}</div>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <div>Cubre:</div>
@@ -59,7 +59,6 @@ export function Garantias({ data }) {
           </CardFooter>
         </Card>
       ))}
-      <Añadirgarantia />
     </div>
   );
 }
