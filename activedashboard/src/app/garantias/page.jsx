@@ -28,9 +28,13 @@ const Garantiasview = () => {
     }
   };
 
+  const handleDelete = async (updatedData) => {
+    setData(updatedData);
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Garantias data={data}></Garantias>
+      <Garantias data={data} onDeleteGarantia={handleDelete}></Garantias>
       <Añadirgarantia onAddGarantia={handleAddGarantia}></Añadirgarantia>
     </div>
   );

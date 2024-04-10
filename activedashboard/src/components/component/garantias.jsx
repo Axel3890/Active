@@ -1,14 +1,15 @@
 
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import Eliminar from "../botones/Eliminar";
-import Añadirgarantia from "../botones/AñadirGarantia";
 import { deleteElement } from "@/app/utils/funciones";
 
-export function Garantias({ data }) {
+export function Garantias({ data, onDeleteGarantia }) {
 
   const handleDelete = async (id) => {
     try {
       await deleteElement('garantias', id);
+      const updatedData = data.filter((garantia) => garantia.id !== id);
+      onDeleteGarantia(updatedData);
       console.log('Elemento eliminado correctamente');
     } catch (error) {
       console.error('Error al eliminar el elemento:', error);

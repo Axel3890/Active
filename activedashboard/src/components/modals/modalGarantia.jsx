@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { postGarantia } from '@/app/utils/funciones';
+import Swal from 'sweetalert2';
 
 const ModalGarantias = ({ setShowModal, onAddGarantia }) => {
   const [formData, setFormData] = useState({
@@ -21,18 +22,40 @@ const ModalGarantias = ({ setShowModal, onAddGarantia }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       await postGarantia(formData);
-      alert('La garantia se agregó correctamente');
-      onAddGarantia(formData)
-      setShowModal(false);
+  
+      const successAlert = await Swal.fire({
+        title: '¡Garantía agregada!',
+        text: 'La garantía se ha agregado correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+  
+      if (successAlert.isConfirmed) {
+        onAddGarantia(formData);
+        setShowModal(false);
+        setFormData({
+          cliente: '',
+          equipo: '',
+          serie: '',
+          fechacompra: '',
+          vencimiento: '',
+          problema: ''
+        });
+      }
     } catch (error) {
-      console.error('Error al agregar el auto:', error);
-      alert('Hubo un error al agregar el auto. Por favor, inténtalo de nuevo más tarde.');
+      console.error('Error al agregar la garantía:', error);
+  
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un error al agregar la garantía. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   };
-
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen px-4">

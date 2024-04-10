@@ -18,15 +18,33 @@ const ModalStock = ({ setShowModal, onAddStock }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       await postStock(formData);
-      alert('El respuesto se agregó correctamente');
-      onAddStock(formData);
-      setShowModal(false);
+  
+      const successAlert = await Swal.fire({
+        title: '¡Stock agregado!',
+        text: 'El repuesto se ha agregado correctamente al stock.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+  
+      if (successAlert.isConfirmed) {
+        onAddStock(formData);
+        setShowModal(false);
+        setFormData({
+          nombre: '',
+          cantidad: '',
+        });
+      }
     } catch (error) {
-      console.error('Error al agregar El respuesto:', error);
-      alert('Hubo un error al agregar El respuesto. Por favor, inténtalo de nuevo más tarde.');
+      console.error('Error al agregar el stock:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un error al agregar el repuesto al stock. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   };
 

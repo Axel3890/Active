@@ -1,10 +1,8 @@
 "use client"
-import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
-
-export function Stock({data}) {
+export function Stock({data, onDeleteStock}) {
 
   const [stock, setStock] = useState({
     stock: ""
@@ -17,6 +15,44 @@ export function Stock({data}) {
       ...stock,
       [name]: value
     });
+  };
+
+  
+  const handleDelete = async (id) => {
+    const confirmationAlert = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar este elemento del stock?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6', // Color personalizado para el botón de confirmación
+      cancelButtonColor: '#d33', // Color personalizado para el botón de cancelar
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+  
+    if (confirmationAlert.isConfirmed) {
+      try {
+        await deleteElement('stock', id);
+        const updatedData = data.filter((stock) => stock.id !== id);
+        onDeleteStock(updatedData);
+  
+        Swal.fire({
+          title: '¡Eliminado!',
+          text: 'El elemento se ha eliminado correctamente del stock.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+      } catch (error) {
+        console.error('Error al eliminar el elemento:', error);
+  
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al eliminar el elemento del stock. Por favor, inténtalo de nuevo más tarde.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    }
   };
 
 
@@ -35,7 +71,7 @@ export function Stock({data}) {
     </div>
     <div class="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
       <svg class="w-6 stroke-red-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-      <button class="font-semibold text-sm text-red-700">Elminar</button>
+      <button class="font-semibold text-sm text-red-700" onClick={() =>  handleDelete(data.id)}>Elminar</button>
     </div>
 </div>
 </div>

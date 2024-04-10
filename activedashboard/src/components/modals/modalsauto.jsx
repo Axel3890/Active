@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { postAutos } from '@/app/utils/funciones';
+import Swal from 'sweetalert2';
 export function ModalAuto ({setShowModal, onAddAuto}) {
     const [formData, setFormData] = useState({
         identificacion: '',
@@ -21,30 +22,42 @@ export function ModalAuto ({setShowModal, onAddAuto}) {
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-
+      
         try {
           await postAutos(formData);
-
-          alert('El auto se ha agregado correctamente.');
-          onAddAuto(formData)
+      
+          const successAlert = await Swal.fire({
+            title: '¡Auto agregado!',
+            text: 'El auto se ha agregado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+      
+          if (successAlert.isConfirmed) {
+            onAddAuto(formData);
+            setShowModal(false);
+            setFormData({
+              identificacion: '',
+              marca: '',
+              modelo: '',
+              modeloaño: '',
+              chasis: '',
+              problema: '',
+              cliente: ''
+            });
+          }
         } catch (error) {
           console.error('Error al agregar el auto:', error);
-
-          alert('Hubo un error al agregar el auto. Por favor, inténtalo de nuevo más tarde.');
+      
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al agregar el auto. Por favor, inténtalo de nuevo más tarde.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
         }
-
-        setShowModal(false);
-
-        setFormData({
-          identificacion: '',
-          marca: '',
-          modelo: '',
-          modeloaño: '',
-          chasis: '',
-          problema: '',
-          cliente: ''
-        });
       };
+      
 return(
     <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen px-4">

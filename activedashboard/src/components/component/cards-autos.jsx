@@ -2,16 +2,45 @@ import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/com
 import Eliminar from "../botones/Eliminar";
 import { deleteElement } from "@/app/utils/funciones";
 import Finalizado from "../botones/Finalizado";
+import Swal from 'sweetalert2';
 
-export function CardsAutos({ data }) {
+export function CardsAutos({ data, onDeleteAuto }) {
 
   const handleDelete = async (id) => {
-    try {
-      await deleteElement('autos', id);
-      console.log('Elemento eliminado correctamente');
-    } catch (error) {
-      console.error('Error al eliminar el elemento:', error);
-    } 
+    const confirmationAlert = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar este auto?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+  
+    if (confirmationAlert.isConfirmed) {
+      try {
+        await deleteElement('autos', id);
+        const updatedData = data.filter((auto) => auto.id !== id);
+        onDeleteAuto(updatedData);
+  
+        Swal.fire({
+          title: '¡Eliminado!',
+          text: 'El auto se ha eliminado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+      } catch (error) {
+        console.error('Error al eliminar el auto:', error);
+  
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al eliminar el auto. Por favor, inténtalo de nuevo más tarde.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    }
   };
 
   return (
