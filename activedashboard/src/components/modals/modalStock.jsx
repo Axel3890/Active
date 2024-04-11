@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { postStock } from '@/app/utils/funciones';
+import Swal from 'sweetalert2';
 
 const ModalStock = ({ setShowModal, onAddStock }) => {
   const [formData, setFormData] = useState({
@@ -58,11 +59,11 @@ const ModalStock = ({ setShowModal, onAddStock }) => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="identificacion" className="block text-sm font-medium text-gray-700">Nombre del respuesto</label>
-                <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
+                <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" required />
               </div>
               <div>
                 <label htmlFor="cliente" className="block text-sm font-medium text-gray-700">Cantidad</label>
-                <input type="number" id="cantidad" name="cantidad" value={formData.cantidad} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" />
+                <input type="number" id="cantidad" name="cantidad" value={formData.cantidad} onChange={handleChange} className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border" required/>
               </div>
              </div>
              <div className="mt-6">

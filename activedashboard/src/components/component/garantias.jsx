@@ -2,18 +2,45 @@
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import Eliminar from "../botones/Eliminar";
 import { deleteElement } from "@/app/utils/funciones";
+import Swal from 'sweetalert2';
 
 export function Garantias({ data, onDeleteGarantia }) {
 
   const handleDelete = async (id) => {
-    try {
-      await deleteElement('garantias', id);
-      const updatedData = data.filter((garantia) => garantia.id !== id);
-      onDeleteGarantia(updatedData);
-      console.log('Elemento eliminado correctamente');
-    } catch (error) {
-      console.error('Error al eliminar el elemento:', error);
-    } 
+    const confirmationAlert = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar esta garantía?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+  
+    if (confirmationAlert.isConfirmed) {
+      try {
+        await deleteElement('garantias', id);
+        const updatedData = data.filter((garantia) => garantia.id !== id);
+        onDeleteGarantia(updatedData);
+  
+        Swal.fire({
+          title: '¡Eliminado!',
+          text: 'La garantía se ha eliminado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+      } catch (error) {
+        console.error('Error al eliminar la garantía:', error);
+  
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al eliminar la garantía. Por favor, inténtalo de nuevo más tarde.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    }
   };
 
   return (

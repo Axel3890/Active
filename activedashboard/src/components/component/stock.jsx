@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import Swal from 'sweetalert2';
+import { deleteElement } from "@/app/utils/funciones";
 
 export function Stock({data, onDeleteStock}) {
 
@@ -24,8 +25,8 @@ export function Stock({data, onDeleteStock}) {
       text: '¿Deseas eliminar este elemento del stock?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6', // Color personalizado para el botón de confirmación
-      cancelButtonColor: '#d33', // Color personalizado para el botón de cancelar
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar'
     });
@@ -57,10 +58,11 @@ export function Stock({data, onDeleteStock}) {
 
 
   return (
-
-<div class="flex flex-col bg-white w-72 h-48 rounded-md py-4 px-6 border">
-<h3 class="text-center font-bold text-xl text-gray-800 pb-2">{data.nombre}</h3>
-<p class="text-xl text-black pb-3">Cantidad: {data.cantidad}</p>
+    <>
+    {data.map(stock => (
+<div class="flex flex-col bg-white w-72 h-48 rounded-md py-4 px-6 border" key={stock.id}>
+<h3 class="text-center font-bold text-xl text-gray-800 pb-2">{stock.nombre}</h3>
+<p class="text-xl text-black pb-3">Cantidad: {stock.cantidad}</p>
 <div class="flex justify-around items-center py-3">
     <div class="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
         <svg class="w-6 stroke-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -71,9 +73,12 @@ export function Stock({data, onDeleteStock}) {
     </div>
     <div class="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
       <svg class="w-6 stroke-red-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-      <button class="font-semibold text-sm text-red-700" onClick={() =>  handleDelete(data.id)}>Elminar</button>
+      <button class="font-semibold text-sm text-red-700" onClick={() =>  handleDelete(stock.id)}>Elminar</button>
     </div>
 </div>
 </div>
+
+    ))}
+    </>
   );
 }

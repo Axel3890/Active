@@ -30,18 +30,14 @@ const Stockview = () => {
   };
 
   const handleDelete = async (updatedData) => {
-    setData(updatedData);
+    setStocks(updatedData);
   };
 
 
   return (
     <div className='flex min-h-screen flex-col items-center justify-between p-24'>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {stocks.map(item => (
-          <div key={item.id}>
-            <Stock data={item} onDeleteStock={handleDelete}/>
-          </div>
-        ))}
+        <Stock data={stocks} onDeleteStock={handleDelete}/>
       </div>
       <AñadirStock onAddStock={handleAddStock} />
     </div>
