@@ -44,26 +44,12 @@ function Sidebar() {
           <h1 className="hidden md:block font-bold text-sm md:text-xl text-center">
             Active Solutions<span className="text-teal-600">.</span>
           </h1>
-          <div id="profile" className="space-y-3">
-            <img
-              src="/logo-original.jpg"
-              alt="Avatar user"
-              className="w-10 md:w-16 rounded-full mx-auto"
-            />
-            <div>
-              <h2 className="font-medium text-xs md:text-sm text-center text-teal-500">
-                Nombre
-              </h2>
-              <p className="text-xs text-gray-500 text-center">
-                Active Solutions
-              </p>
-            </div>
-          </div>
+
           <div className="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500">
             <input
               type="text"
               className="w-full rounded-tl-md rounded-bl-md px-2 py-3 text-sm text-gray-600 focus:outline-none"
-              placeholder="Search"
+              placeholder="Buscar"
             />
             <button className="rounded-tr-md rounded-br-md px-2 py-3 hidden md:block">
               <svg

@@ -44,7 +44,7 @@ export function CardsAutos({ data, onDeleteAuto }) {
   };
 
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
       {data.map((auto) => (
         <Card key={auto.id}>
           <CardHeader className="pb-4">
