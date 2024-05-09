@@ -1,6 +1,6 @@
 export async function getAutos() {
     try {
-        const response = await fetch('http://localhost:3001/autos');
+        const response = await fetch('https://backactive.onrender.com/autos');
         if (!response.ok) {
             throw new Error('Error al obtener los datos de autos');
         }
@@ -14,7 +14,7 @@ export async function getAutos() {
 
 export async function getGarantias() {
     try {
-        const response = await fetch('http://localhost:3001/garantias');
+        const response = await fetch('https://backactive.onrender.com/garantias');
         if (!response.ok) {
             throw new Error('Error al obtener las garantias');
         }
@@ -28,7 +28,7 @@ export async function getGarantias() {
 
 export async function getStock() {
     try {
-        const response = await fetch('http://localhost:3001/stock');
+        const response = await fetch('https://backactive.onrender.com/stock');
         if (!response.ok) {
             throw new Error('Error al obtener los datos de stock');
         }
@@ -44,7 +44,7 @@ export async function getStock() {
 
 export async function postStock(stock) {
     try {
-        const response = await fetch('http://localhost:3001/stock', {
+        const response = await fetch('https://backactive.onrender.com/stock', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export async function postStock(stock) {
 
 export async function postAutos(autoData) {
     try {
-        const response = await fetch('http://localhost:3001/autos', {
+        const response = await fetch('https://backactive.onrender.com/autos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ export async function postAutos(autoData) {
 
 export async function postGarantia(garantiaData) {
     try {
-        const response = await fetch('http://localhost:3001/garantias', {
+        const response = await fetch('https://backactive.onrender.com/garantias', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ export async function postGarantia(garantiaData) {
 
 export async function deleteElement(tipo, id) {
     try {
-      const response = await fetch(`http://localhost:3001/${tipo}/${id}`, {
+      const response = await fetch(`https://backactive.onrender.com/${tipo}/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
