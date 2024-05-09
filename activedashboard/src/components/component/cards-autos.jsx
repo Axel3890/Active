@@ -58,6 +58,7 @@ export function CardsAutos({ data, onDeleteAuto }) {
             <p className="text-sm font-semibold">Chasis: {auto.chasis}</p>
             <p className="text-sm font-semibold">Problema: {auto.problema}</p>
             <p className="text-sm font-semibold">Cliente: {auto.cliente}</p>
+            <p className="text-sm font-bold">Total: {auto.total}</p>
             <Eliminar onClick={() =>  handleDelete(auto.id)}></Eliminar>
             <Finalizado></Finalizado>
           </CardContent>
