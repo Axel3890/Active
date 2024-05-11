@@ -35,8 +35,7 @@ function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <CardsAutos data={data} onDeleteAuto={handleDelete}/>
-      <Añadir onAddAuto={handleAddAuto}></Añadir>
+      hola
     </main>
   );
 }

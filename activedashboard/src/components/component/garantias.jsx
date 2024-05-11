@@ -58,7 +58,7 @@ export function Garantias({ data, onDeleteGarantia }) {
                 <div className="font-medium">{garantia.cliente}</div>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <div>Garantia desde:</div>
+                <div>Desde:</div>
                 <div className="font-medium">{new Date(garantia.inicio).toISOString().slice(0, 10)}</div>
               </div>
               <div className="flex items-center gap-2 text-sm">
