@@ -33,7 +33,7 @@ const Garantiasview = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between p-24 md:ml-11">
       <Garantias data={data} onDeleteGarantia={handleDelete}></Garantias>
       <Añadirgarantia onAddGarantia={handleAddGarantia}></Añadirgarantia>
     </div>
